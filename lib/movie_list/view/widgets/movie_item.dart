@@ -48,7 +48,7 @@ class MovieItem extends StatelessWidget {
                 movie.title,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              Text(movie.releaseDate,
+              Text(movie.formattedReleaseDate,
                 style: Theme.of(context).textTheme.titleSmall,)
             ],
           ),

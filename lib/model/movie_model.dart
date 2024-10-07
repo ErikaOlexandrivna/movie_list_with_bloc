@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class MovieModel {
   final int id;
   final String title;
@@ -5,6 +7,11 @@ class MovieModel {
   final String posterPath;
   final String releaseDate;
   final double voteAverage;
+
+  String get formattedReleaseDate {
+    DateTime dateTime = DateTime.parse(releaseDate);
+    return DateFormat('d-MMMM-yyyy').format(dateTime);
+  }
 
   MovieModel({
     required this.id,
