@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_list_with_bloc/movie_detail/view/movie_detail_page.dart';
 import 'package:movie_list_with_bloc/movie_list/bloc/movie_list_bloc.dart';
 import 'package:movie_list_with_bloc/movie_list/bloc/movie_list_event.dart';
 import 'package:movie_list_with_bloc/movie_list/bloc/movie_list_state.dart';
@@ -57,7 +58,18 @@ class _MovieListState extends State<MovieList> {
                 mainAxisExtent: 263,
               ),
               itemBuilder: (context, index) {
-                return MovieItem(movie: state.movies[index]);
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(
+                            movieId: state.movies[index].id,
+                          ),
+                        ),
+                      );
+                    },
+                    child: MovieItem(movie: state.movies[index]));
               }),
         );
       }

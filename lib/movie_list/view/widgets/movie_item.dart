@@ -15,21 +15,19 @@ class MovieItem extends StatelessWidget {
         ShaderMask(
           blendMode: BlendMode.dstOut,
           shaderCallback: (Rect rect) {
-            return const  LinearGradient(
-              begin: Alignment.topCenter,
+            return const LinearGradient(
+                begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-              Colors.transparent,
-              Palette.background,
-            ]).createShader(rect);
+                  Colors.transparent,
+                  Palette.background,
+                ]).createShader(rect);
           },
           child: GestureDetector(
-            onTap: (){},
+            onTap: () {},
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(10),
-                topLeft: Radius.circular(10)
-              ),
+                  topRight: Radius.circular(10), topLeft: Radius.circular(10)),
               child: Image.network(
                 posterPath + movie.posterPath,
                 fit: BoxFit.cover,
@@ -48,8 +46,10 @@ class MovieItem extends StatelessWidget {
                 movie.title,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              Text(movie.releaseDate,
-                style: Theme.of(context).textTheme.titleSmall,)
+              Text(
+                movie.releaseDate,
+                style: Theme.of(context).textTheme.titleSmall,
+              )
             ],
           ),
         )
