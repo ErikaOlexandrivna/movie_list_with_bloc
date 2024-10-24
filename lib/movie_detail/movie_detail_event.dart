@@ -11,5 +11,4 @@ class MovieDetailedLoaded extends MovieDetailEvent {
 
   @override
   List<Object?> get props => [movieId];
-
 }

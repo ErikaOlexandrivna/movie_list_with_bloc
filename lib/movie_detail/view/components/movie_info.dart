@@ -35,13 +35,18 @@ class MovieInfo extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Palette.textPrimary),
                 ),
-                child: const Text('16 +'),
+                child: const Text(
+                  '16 +',
+                ),
               ),
-              const SizedBox(width: 10,),
-              if (movie.genreList != null) SizedBox(
-                height: 25,
-                child: ListView.separated(
-                  shrinkWrap: true,
+              const SizedBox(
+                width: 10,
+              ),
+              if (movie.genreList != null)
+                SizedBox(
+                  height: 25,
+                  child: ListView.separated(
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     separatorBuilder: (context, index) {
                       return const VerticalDivider(
@@ -52,11 +57,11 @@ class MovieInfo extends StatelessWidget {
                       );
                     },
                     itemCount: movie.genreList!.length,
-                  itemBuilder: (context, index) {
+                    itemBuilder: (context, index) {
                       return Text(movie.genreList![index].name);
-                  },
-                ),
-              )
+                    },
+                  ),
+                )
             ],
           ),
           const SizedBox(

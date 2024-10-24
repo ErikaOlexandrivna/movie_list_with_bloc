@@ -12,11 +12,9 @@ class MovieDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-          create: (_) =>
-          MovieDetailBloc()
-            ..add(MovieDetailedLoaded(movieId)),
-          child: const MovieDetailView(),
+        body: BlocProvider(
+      create: (_) => MovieDetailBloc()..add(MovieDetailedLoaded(movieId)),
+      child: const MovieDetailView(),
     ));
   }
 }

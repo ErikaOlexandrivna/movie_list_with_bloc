@@ -5,12 +5,15 @@ import 'package:movie_list_with_bloc/movie_detail/view/components/background_ima
 import 'package:movie_list_with_bloc/movie_detail/view/components/movie_info.dart';
 import 'package:movie_list_with_bloc/movie_detail/view/components/treiler.dart';
 
+import 'components/credits.dart';
+
 class MovieDetailView extends StatelessWidget {
   const MovieDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieDetailBloc, MovieDetailState>(builder: (context, state) {
+    return BlocBuilder<MovieDetailBloc, MovieDetailState>(
+        builder: (context, state) {
       if (state.loadingStatus == LoadingStatus.loading) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -20,13 +23,20 @@ class MovieDetailView extends StatelessWidget {
           slivers: [
             SliverAppBar(
               expandedHeight: 450,
-              // pinned: true,
+              // pinned true,
               flexibleSpace: FlexibleSpaceBar(
-                background: BackgroundImageWithGradient(movie: state.movieDetail!),
+                background:
+                    BackgroundImageWithGradient(movie: state.movieDetail!),
               ),
             ),
             SliverToBoxAdapter(child: MovieInfo(movie: state.movieDetail!)),
-            SliverToBoxAdapter(child: Trailer(trailers: state.trailers!,))
+            SliverToBoxAdapter(
+                child: Trailer(
+              trailers: state.trailers!,
+            )),
+            SliverToBoxAdapter(
+              child: Credits(credits: state.credits ?? []),
+            ),
           ],
         );
       } else {

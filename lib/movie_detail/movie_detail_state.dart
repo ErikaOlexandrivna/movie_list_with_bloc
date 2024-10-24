@@ -11,22 +11,25 @@ class MovieDetailState extends Equatable {
   final MovieModel? movieDetail;
   final LoadingStatus loadingStatus;
   final List<TrailerModel>? trailers;
+  final List<CreditsModel>? credits;
 
   const MovieDetailState({
     this.movieDetail,
     this.loadingStatus = LoadingStatus.initial,
     this.trailers,
+    this.credits,
   });
 
-  MovieDetailState copyWith({
-    MovieModel? movieDetail,
-    LoadingStatus? loadingStatus,
-    List<TrailerModel>? trailers,
-  }) {
+  MovieDetailState copyWith(
+      {MovieModel? movieDetail,
+      LoadingStatus? loadingStatus,
+      List<TrailerModel>? trailers,
+      final List<CreditsModel>? credits}) {
     return MovieDetailState(
       movieDetail: movieDetail ?? this.movieDetail,
       loadingStatus: loadingStatus ?? this.loadingStatus,
       trailers: trailers ?? this.trailers,
+      credits: credits ?? this.credits,
     );
   }
 
@@ -34,5 +37,6 @@ class MovieDetailState extends Equatable {
   List<Object?> get props => [
         movieDetail,
         loadingStatus,
+        credits,
       ];
 }
