@@ -31,9 +31,7 @@ class Credits extends StatelessWidget {
         children: [
           ClipOval(
             child: Image.network(
-              actor.profile_path != null
-                  ? 'https://image.tmdb.org/t/p/w500${actor.profile_path}'
-                  : 'Dont have photo',
+            'https://image.tmdb.org/t/p/w500${actor.profilePath}',
               width: 100,
               height: 100,
               fit: BoxFit.cover,
@@ -41,12 +39,12 @@ class Credits extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            actor.name,
+            actor.name ?? 'No name',
             textAlign: TextAlign.center,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(
-            actor.original_name,
+            actor.originalName ?? 'No name',
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 12, color: Colors.grey),
           ),

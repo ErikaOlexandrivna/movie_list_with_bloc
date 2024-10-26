@@ -12,8 +12,7 @@ class MovieDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieDetailBloc, MovieDetailState>(
-        builder: (context, state) {
+    return BlocBuilder<MovieDetailBloc, MovieDetailState>(builder: (context, state) {
       if (state.loadingStatus == LoadingStatus.loading) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -23,11 +22,22 @@ class MovieDetailView extends StatelessWidget {
           slivers: [
             SliverAppBar(
               expandedHeight: 450,
-              // pinned true,
+              pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                background:
-                    BackgroundImageWithGradient(movie: state.movieDetail!),
+                background: BackgroundImageWithGradient(movie: state.movieDetail!),
               ),
+              actions: [
+                GestureDetector(
+                    onTap: () => context
+                        .read<MovieDetailBloc>()
+                        .add(MovieToggleFavorites(state.movieDetail!.id)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Icon(
+                        state.isFavorite ? Icons.favorite : Icons.favorite_border,
+                      ),
+                    ))
+              ],
             ),
             SliverToBoxAdapter(child: MovieInfo(movie: state.movieDetail!)),
             SliverToBoxAdapter(

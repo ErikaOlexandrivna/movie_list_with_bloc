@@ -38,7 +38,7 @@ class Trailer extends StatelessWidget {
                 initialVideoId: trailer.key,
                 flags: const YoutubePlayerFlags(
                   autoPlay: false,
-                  mute: true,
+                  mute: false,
                 ),
               ),
             ),

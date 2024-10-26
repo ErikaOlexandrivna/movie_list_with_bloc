@@ -12,3 +12,12 @@ class MovieDetailedLoaded extends MovieDetailEvent {
   @override
   List<Object?> get props => [movieId];
 }
+
+class MovieToggleFavorites extends MovieDetailEvent {
+  final int movieId;
+
+  const MovieToggleFavorites(this.movieId);
+
+  @override
+  List<Object?> get props => [movieId];
+}
