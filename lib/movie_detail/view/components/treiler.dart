@@ -11,14 +11,15 @@ class Trailer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Trailers'),
+        const Text('Trailers'),
         SizedBox(
-          height: 500,
+          height: 300,
           child: PageView.builder(
               itemCount: trailers.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                   width: MediaQuery.of(context).size.width * 0.97,
                   child: _videoTrailer(trailers[index]),
                 );
@@ -35,11 +36,10 @@ class Trailer extends StatelessWidget {
             player: YoutubePlayer(
               controller: YoutubePlayerController(
                 initialVideoId: trailer.key,
-                flags: YoutubePlayerFlags(
+                flags: const YoutubePlayerFlags(
                   autoPlay: false,
-                  mute: true,
+                  mute: false,
                 ),
-
               ),
             ),
             builder: (context, player) => player),
