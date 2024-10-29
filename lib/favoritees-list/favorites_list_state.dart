@@ -11,10 +11,17 @@ final class FavoritesListInitial extends FavoritesListState {
 
 final class FavoritesListLoading extends FavoritesListState {}
 
-final class FavoritesListFailed extends FavoritesListState{}
+final class FavoritesListFailed extends FavoritesListState{
+  final String errorMessage;
+
+  const FavoritesListFailed({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}
 
 final class FavoritesLoadedSuccess extends FavoritesListState {
-  final List<MovieModel> favoritesList;
+  final List<Movie> favoritesList;
 
   const FavoritesLoadedSuccess(this.favoritesList);
 

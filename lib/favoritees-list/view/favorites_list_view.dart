@@ -22,12 +22,12 @@ class FavoritesListView extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                 child: Row(
                   children: [
-                    Flexible(child: Image.network(posterPath + movie.posterPath)),
+                    Flexible(child: Image.network(posterPath + movie.posterPath!)),
                     const SizedBox(width: 10),
                     Flexible(child: Column(
                       children: [
-                        Text(movie.title),
-                        Text('Reating: ${movie.voteAverage}')
+                        Text(movie.title ?? ''),
+                        Text('Reating: ${movie.overview}')
                       ],
                     ))
                   ],
