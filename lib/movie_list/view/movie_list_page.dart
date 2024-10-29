@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_list_with_bloc/favoritees-list/view/favorites_list_page.dart';
 import 'package:movie_list_with_bloc/movie_list/bloc/movie_list_bloc.dart';
 import 'package:movie_list_with_bloc/movie_list/bloc/movie_list_event.dart';
 
@@ -15,6 +16,16 @@ class MovieListPage extends StatelessWidget {
           title: const Text(
             'Top Film',
           ),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FavoritesListPage(),
+                      ),
+                    ),
+                icon: const Icon(Icons.heart_broken_sharp))
+          ],
         ),
         body: BlocProvider(
           create: (_) => MovieListBloc()..add(MovieListFetched()),
