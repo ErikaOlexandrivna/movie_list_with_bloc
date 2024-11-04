@@ -13,6 +13,7 @@ class MovieDetailState extends Equatable {
   final List<TrailerModel>? trailers;
   final List<CreditsModel>? credits;
   final bool isFavorite;
+  final List<ReviewModel>? reviews;
 
   const MovieDetailState({
     this.movieDetail,
@@ -20,6 +21,7 @@ class MovieDetailState extends Equatable {
     this.trailers,
     this.credits,
     this.isFavorite = false,
+    this.reviews,
   });
 
   MovieDetailState copyWith(
@@ -27,6 +29,7 @@ class MovieDetailState extends Equatable {
       LoadingStatus? loadingStatus,
       List<TrailerModel>? trailers,
       bool? isFavorite,
+      final List<ReviewModel>? reviews,
       final List<CreditsModel>? credits}) {
     return MovieDetailState(
       movieDetail: movieDetail ?? this.movieDetail,
@@ -34,6 +37,8 @@ class MovieDetailState extends Equatable {
       trailers: trailers ?? this.trailers,
       credits: credits ?? this.credits,
       isFavorite: isFavorite ?? this.isFavorite,
+      reviews: reviews ?? this.reviews,
+
     );
   }
 
@@ -44,5 +49,6 @@ class MovieDetailState extends Equatable {
         credits,
         trailers,
         isFavorite,
+         reviews
       ];
 }

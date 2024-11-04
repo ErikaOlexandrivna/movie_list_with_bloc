@@ -4,11 +4,12 @@ import 'package:movie_list_with_bloc/model/credits_model.dart';
 import 'package:movie_list_with_bloc/model/movie_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:movie_list_with_bloc/model/treirel_model.dart';
+import 'package:movie_list_with_bloc/model/review_model.dart';
 
 class MovieDataSource {
 
   Future<MovieModel> fetchMovieDetailed(int movieId) async {
-    final response = await http.post(Uri.https('api.themoviedb.org', '3/movie/$movieId'), headers: {
+    final response = await http.get(Uri.https('api.themoviedb.org', '3/movie/$movieId'), headers: {
       'Authorization':
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGMxYTYwMjFlMjdkZjNlZmRkZGRjODU1NTRlMjFiNyIsIm5iZiI6MTcyNzc5NTk3Ni4yNzM4ODMsInN1YiI6IjY0YmY4MmZhMDE3NTdmMDBlMjE2YTYxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LiUBJhN9WXWNp4fEtwwh-esCzBVuVPZq1sJARtMgUcM',
     });
@@ -58,4 +59,28 @@ class MovieDataSource {
       throw Exception('Failed to load credits');
     }
   }
+
+  Future<List<ReviewModel>> fetchReviews(int movieId) async {
+    final response = await http.get(
+      Uri.https('api.themoviedb.org', '3/movie/$movieId/reviews'),
+      headers: {
+        'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGMxYTYwMjFlMjdkZjNlZmRkZGRjODU1NTRlMjFiNyIsIm5iZiI6MTcyNzc5NTk3Ni4yNzM4ODMsInN1YiI6IjY0YmY4MmZhMDE3NTdmMDBlMjE2YTYxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LiUBJhN9WXWNp4fEtwwh-esCzBVuVPZq1sJARtMgUcM',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      List<ReviewModel> reviews = [];
+      for (var item in data['results']) {
+        reviews.add(ReviewModel.fromJson(item));
+      }
+      return reviews;
+    } else {
+      throw Exception('Failed to load reviews');
+    }
+  }
+
+
+
 }

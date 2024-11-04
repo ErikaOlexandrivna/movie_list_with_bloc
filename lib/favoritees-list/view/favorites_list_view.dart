@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_list_with_bloc/const.dart';
 import 'package:movie_list_with_bloc/favoritees-list/favorites_list_bloc.dart';
 
+import '../../movie_detail/view/movie_detail_page.dart';
+
 class FavoritesListView extends StatelessWidget {
   const FavoritesListView({super.key});
 
@@ -18,7 +20,17 @@ class FavoritesListView extends StatelessWidget {
             itemCount: state.favoritesList.length,
             itemBuilder: (context, index) {
               final movie = state.favoritesList[index];
-              return Container(
+              return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MovieDetailPage(movieId: movie.id!),
+                      ),
+                    );
+                  },
+
+              child:  Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                 child: Row(
                   children: [
@@ -32,7 +44,7 @@ class FavoritesListView extends StatelessWidget {
                     ))
                   ],
                 ),
-              );
+              ));
             });
       } else if (state is FavoritesListFailed) {
         return const Center(child: Text("Oops! Щось пішло не так"),);
